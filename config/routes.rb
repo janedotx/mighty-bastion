@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
+  get '.well-known/acme-challenge/vKn8WrehP-J-w9psnrcWOaYagOoup3nqR0MyxGoWIK8', to: 'welcome#ssl'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
