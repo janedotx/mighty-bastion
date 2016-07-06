@@ -5,9 +5,9 @@ class Board
   def clear
     @state =
       [
-        0, 0, 0,
-        0, 0, 0,
-        0, 0, 0
+        [nil, nil, nil],
+        [nil, nil, nil],
+        [nil, nil, nil]
       ]
   end
 end

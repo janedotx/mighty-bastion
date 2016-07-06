@@ -7,9 +7,9 @@ class Board
   def initialize
     @state =
       [
-        0, 0, 0,
-        0, 0, 0,
-        0, 0, 0
+        [nil, nil, nil],
+        [nil, nil, nil],
+        [nil, nil, nil]
       ]
   end
 
@@ -17,8 +17,7 @@ class Board
     raise 'out of bounds' if x < 0 || x > 2 || y < 0 || y > 2
 
     player_mark = player == 1 ? P1_MARK : P2_MARK
-    index = convert_x_y_to_i(x, y)
-    raise 'someone already went there!' if @state[index] != 0
+    raise 'someone already went there!' if @state[x][y] != 0
 
     @state[index] = player_mark
     is_winner(x, y, player_mark)
@@ -41,19 +40,20 @@ class Board
   end
 
   def check_row(x, player_mark)
-    return true if @state[3 * x] + @state[3 * x + 1] + @state[3 * x + 2] == 3 * player_mark
-    return false
+    count = @state[x].count { |move| move == player_mark }
+    return count == 3
   end
 
   def check_col(y, player_mark)
-    return true if @state[y] + @state[y + 3] + @state[y + 6] == 3 * player_mark
-    return false
+    col_arr = [@state[0][y], @state[1][y], @state[2][y]]
+    count = col_arr.count { |move| move == player_mark }
+    return count == 3
   end
 
   # Might as well check both diagonals, since the logic is simpler that way. Thankfully, a tic tac toe board is not large.
   def check_diagonals(player_mark)
-    return true if @state[2] + @state[4] + @state[6] == 3 * player_mark
-    return true if @state[0] + @state[4] + @state[8] == 3 * player_mark
+  #  return true if @state[2] + @state[4] + @state[6] == 3 * player_mark
+  #  return true if @state[0] + @state[4] + @state[8] == 3 * player_mark
     return false
   end
 
