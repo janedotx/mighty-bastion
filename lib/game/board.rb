@@ -24,7 +24,17 @@ class Board
     is_winner(x, y, player_mark)
   end
 
+  def to_s
+    "#{@state[0]}|#{@state[1]}|#{@state[2]}}\n" +
+    "#{@state[3]}|#{@state[4]}|#{@state[5]}}\n" +
+    "#{@state[6]}|#{@state[7]}|#{@state[8]}}\n" +
+  end
+
   private
+
+  def state_to_s(state)
+    state == 1 ? 'X' : 'O'
+  end
 
   def convert_x_y_to_i(x, y)
     3 * x + y
