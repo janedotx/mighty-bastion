@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  post 'games/challenge' => 'games#challenge'
+  get  'games/help' => 'games#help'
+  post 'games/move' => 'games#move'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

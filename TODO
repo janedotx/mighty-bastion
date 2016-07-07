@@ -1,0 +1,7 @@
+fix .git/config to remove github link
+
+before_filter to ensure that the request comes from slack
+
+history for scoreboard?
+
+cheat code?
