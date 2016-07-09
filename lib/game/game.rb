@@ -1,18 +1,19 @@
 require_relative 'board'
+require_relative 'game_exception'
 
 class Game
-  attr_reader :player1, :player2, :current_player
+  attr_reader :player1, :player2, :next_player
 
   P1_MARK = 'X'
   P2_MARK = 'O'
-  # current player
+  # next player
   # eligible players
   # player mapping
   def initialize(challenged:, challenger:)
     @player1 = challenged
     @player2 = challenger
     @board = Board.new
-    @current_player = challenged
+    @next_player = challenged
     @player_to_mark_hash = { @player1 => P1_MARK, @player2 => P2_MARK }
   end
 
@@ -21,19 +22,17 @@ class Game
   end
 
   def make_move(i, player)
+    raise GameException.new("It isn't your turn!") if player != @next_player
     mark = @player_to_mark_hash[player]
     x, y = i_to_x_y(i)
     @board.update(x, y, mark)
-    puts "#make move"
-    puts player
-    @current_player = get_other_player(player)
-    puts "new player: #{@current_player}"
+    @next_player = get_other_player(player)
     @board.is_winner(x, y, mark)
   end
 
   def print_victory_board
-    winning_mark = @player_to_mark_hash[get_other_player(@current_player)]
-    losing_mark = @player_to_mark_hash[@current_player]
+    winning_mark = @player_to_mark_hash[get_other_player(@next_player)]
+    losing_mark = @player_to_mark_hash[@next_player]
     @board.to_s.gsub(winning_mark, ':heart_eyes:').gsub(losing_mark, ':skull:')
   end
 

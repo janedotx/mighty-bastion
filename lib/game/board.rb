@@ -1,3 +1,5 @@
+require_relative 'game_exception'
+
 class Board
   attr_reader :state
 
@@ -11,8 +13,8 @@ class Board
   end
 
   def update(x, y, player)
-    raise 'out of bounds' if x < 0 || x > 2 || y < 0 || y > 2
-    raise 'someone already went there!' if @state[x][y] != '-'
+    raise GameException.new('out of bounds') if x < 0 || x > 2 || y < 0 || y > 2
+    raise GameException.new('someone already went there!') if @state[x][y] != '-'
 
     @state[x][y] = player
   end

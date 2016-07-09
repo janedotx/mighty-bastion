@@ -1,7 +1,7 @@
 fix .git/config to remove github link
 
 before_filter to ensure that the request comes from slack
+before_filter in games controller so that the game is set as an instance variable to DRY things up
 
-history for scoreboard?
-
+remove database stuff
 cheat code?
