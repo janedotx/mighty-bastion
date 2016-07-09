@@ -4,8 +4,12 @@ class GameManager
   # channel-game mapping
   @@games = {}
   class << self
-    def games
-      @@games
+    def delete(channel_id)
+      @@games.delete(channel_id)
+    end
+
+    def fetch(channel_id)
+      @@games[channel_id]
     end
 
     # Player1 will always be the challenged player and gets to go first.
@@ -14,7 +18,9 @@ class GameManager
     end
 
     def print_game(channel_id)
-      # what if there is no game for this channel?
+      game = @@games[channel_id]
+      return "No ongoing game! You should challenge someone." if @@games[channel_id].nil?
+      return game.print_board
     end
   end
 end
