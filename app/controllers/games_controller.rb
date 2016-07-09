@@ -1,14 +1,13 @@
 require 'game/game_manager'
 
 class GamesController < ApplicationController
-  before_action :verify_slackiness
   before_action :set_game
 
   def display
     render json: {
       response_type: 'in_channel',
       text:  GameManager.print_game(params[:channel_id])
-      }
+    }
   end
 
   def challenge
@@ -65,10 +64,6 @@ class GamesController < ApplicationController
   end
 
   private
-
-  def verify_slackiness
-    render plain: 'Unauthorized tic tac toe attempt.' if params[:token] != '2g4fusktmXo8GikeHiAduMsK'
-  end
 
   def set_game
     @game = GameManager.fetch(params[:channel_id])
