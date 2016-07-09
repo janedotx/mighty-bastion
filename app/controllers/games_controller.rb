@@ -67,7 +67,7 @@ class GamesController < ApplicationController
   private
 
   def verify_slackiness
-    render plain: 'Unauthorized tic tac toe attempt.' if params[:token] != 'UFV42RPuRbeHSpmyLlAYVrib'
+    render plain: 'Unauthorized tic tac toe attempt.' if params[:token] != '2g4fusktmXo8GikeHiAduMsK'
   end
 
   def set_game
