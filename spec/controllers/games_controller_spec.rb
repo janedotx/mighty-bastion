@@ -136,7 +136,7 @@ RSpec.describe GamesController, type: :controller do
       post :move, { channel_id: 'fox', user_name: 'ham', text: '9' }
       expect(get_text(response)).to match /ham has triumphed on the field of battle/
 
-      GameManager.fetch('fox').should eq nil
+      expect(GameManager.fetch('fox')).to eq nil
     end
   end
 

@@ -9,9 +9,9 @@ RSpec.describe Game do
 
   describe '#initialize' do
     it 'sets up the players correctly' do
-      @game.player1.should eq 'ham'
-      @game.player2.should eq 'eggs'
-      @game.next_player.should eq 'ham'
+      expect(@game.player1).to eq 'ham'
+      expect(@game.player2).to eq 'eggs'
+      expect(@game.next_player).to eq 'ham'
     end
   end
 
