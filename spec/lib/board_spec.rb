@@ -86,6 +86,22 @@ RSpec.describe Board do
     end
   end
 
+  describe '#is_full' do
+    it "detects board with no valid moves left" do
+      @board.update(0, 0, 'X')
+      @board.update(0, 1, 'X')
+      @board.update(0, 2, 'O')
+      @board.update(1, 0, 'O')
+      @board.update(1, 1, 'X')
+      @board.update(1, 2, 'X')
+      @board.update(2, 0, 'X')
+      @board.update(2, 1, 'O')
+      @board.update(2, 2, 'O')
+
+      expect(@board.is_full).to be true
+    end
+  end
+
   describe '#to_s' do
     it 'prints out the board correctly' do
       @board.update(1, 1, 'O')

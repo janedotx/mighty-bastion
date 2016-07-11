@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get  'games/help' => 'games#help'
   post 'games/move' => 'games#move'
   get 'games/display' => 'games#display'
+  post 'games/cheat' => 'games#cheat'
 end
