@@ -13,6 +13,7 @@ class Board
       ]
   end
 
+  # Update the board with only valid moves.
   def update(x, y, player)
     raise GameException.new('out of bounds') if x < 0 || x > 2 || y < 0 || y > 2
     raise GameException.new('someone already went there!') if @state[x][y] != '-'
@@ -20,6 +21,7 @@ class Board
     @state[x][y] = player
   end
 
+  # See if the most recent move has resulted in the game ending.
   def is_winner(x, y, player)
     return true if check_row(x, player)
     return true if check_col(y, player)
@@ -27,6 +29,7 @@ class Board
     return false
   end
 
+  # Detect whether there are valid moves left.
   def is_full
     count(@state.flatten, '-') == 0
   end
